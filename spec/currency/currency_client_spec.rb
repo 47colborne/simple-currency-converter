@@ -19,6 +19,14 @@ module Currency
         exchange_rate = currency_client.get_exchange_rate(:CAD, :USD)
         expect(exchange_rate).to eq(0.7538)
       end
+
+      it 'should return nil if no exchange rate is found' do
+        response = "N/A,N/A,N/A\n"
+        allow(Net::HTTP).to receive(:get).and_return(response)
+
+        exchange_rate = currency_client.get_exchange_rate(:non_existant_currency, :USD)
+        expect(exchange_rate).to be_nil
+      end
     end
 
   end

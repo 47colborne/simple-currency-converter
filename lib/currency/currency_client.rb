@@ -10,7 +10,9 @@ module Currency
 
       unless response.nil?
         parsed_response = response.split(',')
-        parsed_response.first.to_f
+        exchange_rate = parsed_response.first
+
+        exchange_rate == 'N/A' ? nil : exchange_rate.to_f
       end
     end
 
