@@ -3,16 +3,23 @@ require 'spec_helper'
 module Currency
   describe CurrencyClient do
     describe '#get_exchange_rate' do
+      let(:yahoo_uri_params) { {host:"download.finance.yahoo.com", path:"/d/quotes.csv", query:"s=CADUSD=X&f=l1d1t1&e=.csv"} }
+      let(:currency_client) { CurrencyClient.new }
+
       it 'should create the yahoo download link based on the given params' do
-        yahoo_uri_params = { host:"download.finance.yahoo.com", path:"/d/quotes.csv", query:"s=CADUSD=X&f=l1c1p2rj1&e=.csv" }
         expect(URI::HTTP).to receive(:build).with(yahoo_uri_params)
         allow(Net::HTTP).to receive(:get)
-        CurrencyClient.new.get_exchange_rate(:CAD, :USD)
+        currency_client.get_exchange_rate(:CAD, :USD)
+      end
+
+      it 'should parse the returned csv record into a float' do
+        response = "0.7538,\"9/11/2015\",\"5:13pm\"\n"
+        allow(Net::HTTP).to receive(:get).and_return(response)
+
+        exchange_rate = currency_client.get_exchange_rate(:CAD, :USD)
+        expect(exchange_rate).to eq(0.7538)
       end
     end
-
-
-
 
   end
 end
