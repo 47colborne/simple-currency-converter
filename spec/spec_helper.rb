@@ -18,7 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 
-Dir[File.expand_path('../../lib/*/*.rb', __FILE__)].each do |file|
+Dir[File.expand_path('../../lib/**/*.rb', __FILE__)].each do |file|
   require file
 end
 
