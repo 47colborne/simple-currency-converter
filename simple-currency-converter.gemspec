@@ -1,7 +1,7 @@
 # coding: utf-8
 Gem::Specification.new do |s|
   s.name          = 'simple-currency-converter'
-  s.version       = '0.0.4'
+  s.version       = '0.0.5'
   s.authors       = ['RETAILCOMMON DEV (Scott Chu, Justine Jones, Jeff Li, Greg Ward)']
   s.email         = ['dev@retailcommon.com']
   s.summary       = 'Web client to retrieve currency exchange rates'
