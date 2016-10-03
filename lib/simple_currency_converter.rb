@@ -17,3 +17,5 @@ module SimpleCurrencyConverter
     end
   end
 end
+
+SimpleCurrencyConverter::Client
